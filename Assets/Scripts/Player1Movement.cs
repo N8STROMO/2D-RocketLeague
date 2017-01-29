@@ -22,10 +22,11 @@ public class Player1Movement : MonoBehaviour {
     {
         TruckHorizontalMovement();
 	}
-    
+
     /// <summary>
     /// 
     /// </summary>
+
     void TruckHorizontalMovement ()
     {
         bool movementRight = Input.GetKey(KeyCode.RightArrow);
