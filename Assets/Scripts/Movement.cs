@@ -5,8 +5,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
 
     public Rigidbody2D rb2d;
-    public float speed;
-    public float jumpHeight;
+    public float moveForce;
+    public float maxSpeed;
+    public float jumpForce;
+    public Transform groundCheck;
+    public bool grounded = false;
+
 
 	/// <summary>
     /// 
@@ -21,6 +25,7 @@ public class Movement : MonoBehaviour {
     /// </summary>
 	void Update ()
     {
+        CheckGround();
         TruckHorizontalMovement();
         TruckJump();
         FacingDirection();
@@ -36,18 +41,26 @@ public class Movement : MonoBehaviour {
 
         if (movementRight)
         {
-            rb2d.velocity = new Vector2(speed, 0);
+            rb2d.AddForce(Vector2.right * moveForce);
         }
 
         else if (movementLeft)
         {
-            rb2d.velocity = new Vector2(-speed, 0);
+            rb2d.AddForce(Vector2.left * moveForce);
         }
 
         else
         {
-            rb2d.velocity = Vector2.zero;
+            rb2d.AddForce(Vector2.zero);
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    void CheckGround()
+    {
+
     }
 
     /// <summary>
@@ -78,7 +91,7 @@ public class Movement : MonoBehaviour {
 
         if (jump)
         {
-            rb2d.AddForce(Vector2.up * jumpHeight);
+            rb2d.AddForce(Vector2.up * jumpForce);
         }
 
     }
