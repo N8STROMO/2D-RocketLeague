@@ -6,14 +6,14 @@ public class Movement : MonoBehaviour {
 
     public Rigidbody2D rb2d;
     public float moveForce;
+    public float speed;
     public float maxSpeed;
     public float jumpForce;
-    public Transform groundCheck;
-    public bool grounded = false;
+    public bool grounded;
 
 
 	/// <summary>
-    /// 
+    /// Called on first frame
     /// </summary>
 	void Start ()
     {
@@ -21,18 +21,42 @@ public class Movement : MonoBehaviour {
 	}
 	
 	/// <summary>
-    /// 
+    /// Calls methods to deal with truck movement, jumping, and facing direction
+    /// TODO Clamp the velocity of the truck to maxSpeed
     /// </summary>
 	void Update ()
     {
-        CheckGround();
+        Mathf.Clamp(rb2d.velocity.x, 0, maxSpeed);
         TruckHorizontalMovement();
         TruckJump();
         FacingDirection();
+        speed = rb2d.velocity.x; //This is to check if the speed is being clamped
 	}
 
     /// <summary>
-    /// 
+    /// Checks if the Truck has collided with the ground and changes grounded to true
+    /// </summary>
+    /// <param name="collision"></param>
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
+
+    }
+
+    /// <summary>
+    /// TODO Need to know if the truck is not grounded 
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+
+    }
+
+    /// <summary>
+    /// Deals with horizontal movement of the truck
     /// </summary>
     void TruckHorizontalMovement ()
     {
@@ -56,15 +80,7 @@ public class Movement : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
-    /// </summary>
-    void CheckGround()
-    {
-
-    }
-
-    /// <summary>
-    /// 
+    /// Changes the direction the truck faces based on the direction the truck is traveling
     /// </summary>
     void FacingDirection()
     {
@@ -83,15 +99,17 @@ public class Movement : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Deals with implementing jumping. If the truck is not grounded do not allow the truck to jump.
+    /// See OnCollisionExit2D
     /// </summary>
     void TruckJump ()
     {
         bool jump = Input.GetKey(KeyCode.UpArrow);
 
-        if (jump)
+        if (jump && grounded == true)
         {
             rb2d.AddForce(Vector2.up * jumpForce);
+            grounded = false;
         }
 
     }
