@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour {
         ResetAfterScore();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void ResetAfterScore()
     {
         ball.gameObject.transform.position = new Vector3(0, -6.4f, 0);
