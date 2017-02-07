@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour {
 
     /// <summary>
     /// Checks if the Truck has collided with the ground and changes grounded to true
-    /// Checks if the Truck has collided with the sky and changed grounded to false
+    /// Else the Truck is not grounded and set grounded to false
     /// </summary>
     /// <param name="collision"></param>
     void OnCollisionEnter2D(Collision2D collision)
@@ -41,7 +41,7 @@ public class Movement : MonoBehaviour {
         {
             grounded = true;
         }
-        if (collision.gameObject.CompareTag("Sky"))
+        else
         {
             grounded = false;
         }
@@ -83,12 +83,12 @@ public class Movement : MonoBehaviour {
 
         if (movementRight)
         {
-            rb2d.transform.localScale = new Vector3(1, 1, 1);
+            rb2d.transform.localScale = new Vector3(1.5f, 1.5f, 1);
         }
 
         if (movementLeft)
         {
-            rb2d.transform.localScale = new Vector3(-1, 1, 1);
+            rb2d.transform.localScale = new Vector3(-1.5f, 1.5f, 1);
         }
     }
 
