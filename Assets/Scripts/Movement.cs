@@ -22,19 +22,17 @@ public class Movement : MonoBehaviour {
 	
 	/// <summary>
     /// Calls methods to deal with truck movement, jumping, and facing direction
-    /// TODO Clamp the velocity of the truck to maxSpeed
     /// </summary>
 	void Update ()
     {
-        Mathf.Clamp(rb2d.velocity.x, 0, maxSpeed);
         TruckHorizontalMovement();
         TruckJump();
         FacingDirection();
-        speed = rb2d.velocity.x; //This is to check if the speed is being clamped
 	}
 
     /// <summary>
     /// Checks if the Truck has collided with the ground and changes grounded to true
+    /// Checks if the Truck has collided with the sky and changed grounded to false
     /// </summary>
     /// <param name="collision"></param>
     void OnCollisionEnter2D(Collision2D collision)
@@ -43,32 +41,28 @@ public class Movement : MonoBehaviour {
         {
             grounded = true;
         }
-
+        if (collision.gameObject.CompareTag("Sky"))
+        {
+            grounded = false;
+        }
     }
 
-    /// <summary>
-    /// TODO Need to know if the truck is not grounded 
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-
-    }
 
     /// <summary>
     /// Deals with horizontal movement of the truck
+    /// Implemented a maxspeed within the if construct
     /// </summary>
     void TruckHorizontalMovement ()
     {
         bool movementRight = Input.GetKey(KeyCode.RightArrow);
         bool movementLeft = Input.GetKey(KeyCode.LeftArrow);
 
-        if (movementRight)
+        if (movementRight && Mathf.Abs(rb2d.velocity.x) <= maxSpeed)
         {
             rb2d.AddForce(Vector2.right * moveForce);
         }
 
-        else if (movementLeft)
+        else if (movementLeft && Mathf.Abs(rb2d.velocity.x) <= maxSpeed)
         {
             rb2d.AddForce(Vector2.left * moveForce);
         }
@@ -100,7 +94,6 @@ public class Movement : MonoBehaviour {
 
     /// <summary>
     /// Deals with implementing jumping. If the truck is not grounded do not allow the truck to jump.
-    /// See OnCollisionExit2D
     /// </summary>
     void TruckJump ()
     {
