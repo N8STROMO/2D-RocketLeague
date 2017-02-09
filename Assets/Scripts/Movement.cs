@@ -6,7 +6,6 @@ public class Movement : MonoBehaviour {
 
     public Rigidbody2D rb2d;
     public float moveForce;
-    public float speed;
     public float maxSpeed;
     public float jumpForce;
     public bool grounded;
@@ -32,12 +31,29 @@ public class Movement : MonoBehaviour {
 
     /// <summary>
     /// Checks if the Truck has collided with the ground and changes grounded to true
+    /// Checks if the Truck has collided with "something else" and changes grounded to true is the truck is already grounded
     /// Else the Truck is not grounded and set grounded to false
     /// </summary>
     /// <param name="collision"></param>
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
+        else if(collision.gameObject.CompareTag("Ball") && grounded == true)
+        {
+            grounded = true;
+        }
+        else if(collision.gameObject.CompareTag("Player1Goal") && grounded == true)
+        {
+            grounded = true;
+        }
+        else if(collision.gameObject.CompareTag("Player2Goal") && grounded == true)
+        {
+            grounded = true;
+        }
+        else if(collision.gameObject.CompareTag("Truck") && grounded == true)
         {
             grounded = true;
         }
@@ -57,12 +73,12 @@ public class Movement : MonoBehaviour {
         bool movementRight = Input.GetKey(KeyCode.RightArrow);
         bool movementLeft = Input.GetKey(KeyCode.LeftArrow);
 
-        if (movementRight && Mathf.Abs(rb2d.velocity.x) <= maxSpeed)
+        if (movementRight && (Mathf.Abs(rb2d.velocity.x) <= maxSpeed) && grounded == true)
         {
             rb2d.AddForce(Vector2.right * moveForce);
         }
 
-        else if (movementLeft && Mathf.Abs(rb2d.velocity.x) <= maxSpeed)
+        else if (movementLeft && (Mathf.Abs(rb2d.velocity.x) <= maxSpeed) && grounded == true)
         {
             rb2d.AddForce(Vector2.left * moveForce);
         }

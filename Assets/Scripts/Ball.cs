@@ -8,7 +8,7 @@ public class Ball : MonoBehaviour {
     public GameManager manager;
 
 	/// <summary>
-    /// 
+    /// Called on first frame
     /// </summary>
 	void Start ()
     {
@@ -24,7 +24,7 @@ public class Ball : MonoBehaviour {
 	}
 
     /// <summary>
-    /// 
+    /// Deals with which goal is hit and awarding the proper player with a goal
     /// </summary>
     /// <param name="collision"></param>
     void OnCollisionEnter2D(Collision2D collision)

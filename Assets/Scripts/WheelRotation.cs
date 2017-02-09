@@ -9,7 +9,7 @@ public class WheelRotation : MonoBehaviour {
     public float rotation;
 
 	/// <summary>
-    /// 
+    /// Called on first frame
     /// </summary>
 	void Start ()
     {
@@ -17,7 +17,7 @@ public class WheelRotation : MonoBehaviour {
 	}
 	
 	/// <summary>
-    /// 
+    /// Call method to rotate wheels
     /// </summary>
 	void Update ()
     {
@@ -25,7 +25,7 @@ public class WheelRotation : MonoBehaviour {
 	}
 
     /// <summary>
-    /// 
+    /// Based on which truck way the truck is facing rotate the wheels in the approriapte directions around the Z axis
     /// </summary>
     void Rotate()
     {
