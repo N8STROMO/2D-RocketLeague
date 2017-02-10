@@ -6,8 +6,11 @@ public class Ball : MonoBehaviour {
 
     public Rigidbody2D rb2d;
     public GameManager manager;
-
-	/// <summary>
+    public float maxVelocity;
+    public float velocity;
+    public float moveForce;
+	
+    /// <summary>
     /// Called on first frame
     /// </summary>
 	void Start ()
@@ -20,8 +23,9 @@ public class Ball : MonoBehaviour {
     /// </summary>
 	void Update ()
     {
-		
+        velocity = rb2d.velocity.x;
 	}
+
 
     /// <summary>
     /// Deals with which goal is hit and awarding the proper player with a goal
@@ -38,5 +42,23 @@ public class Ball : MonoBehaviour {
         {
             manager.Player1Scores();
         }
+
    }
+
+    /// <summary>
+    /// Max velocity of ball
+    /// </summary>
+    void CapBallMovement ()
+    {
+        if //collision from left side of ball && (rb2d.velocity.x) <= Mathf.Abs(maxVelocity))
+        {
+            rb2d.AddForce(Vector2.right * moveForce);
+        }
+
+        if //collision from right side of ball && (rb2d.velocity.x) <= Mathf.Abos(maxVelocity))
+        {
+            rb2d.AddForce(Vector2.left * moveForce);
+        }
+    }
 }
+

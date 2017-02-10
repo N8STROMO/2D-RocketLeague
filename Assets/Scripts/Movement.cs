@@ -99,12 +99,12 @@ public class Movement : MonoBehaviour {
 
         if (movementRight)
         {
-            rb2d.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            rb2d.transform.localScale = new Vector3(-1.5f, 1.5f, 1);
         }
 
         if (movementLeft)
         {
-            rb2d.transform.localScale = new Vector3(-1.5f, 1.5f, 1);
+            rb2d.transform.localScale = new Vector3(1.5f, 1.5f, 1);
         }
     }
 
