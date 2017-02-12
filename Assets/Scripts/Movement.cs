@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour {
 	void Start ()
     {
         rb2d = GetComponent<Rigidbody2D>();
+
 	}
 	
 	/// <summary>
@@ -40,26 +41,6 @@ public class Movement : MonoBehaviour {
         if (collision.gameObject.CompareTag("Ground"))
         {
             grounded = true;
-        }
-        else if(collision.gameObject.CompareTag("Ball") && grounded == true)
-        {
-            grounded = true;
-        }
-        else if(collision.gameObject.CompareTag("Player1Goal") && grounded == true)
-        {
-            grounded = true;
-        }
-        else if(collision.gameObject.CompareTag("Player2Goal") && grounded == true)
-        {
-            grounded = true;
-        }
-        else if(collision.gameObject.CompareTag("Truck") && grounded == true)
-        {
-            grounded = true;
-        }
-        else
-        {
-            grounded = false;
         }
     }
 

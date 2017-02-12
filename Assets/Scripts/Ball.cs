@@ -26,6 +26,10 @@ public class Ball : MonoBehaviour {
         velocity = rb2d.velocity.x;
 	}
 
+    void FixedUpdate()
+    {
+        CapBallmovement();
+    }
 
     /// <summary>
     /// Deals with which goal is hit and awarding the proper player with a goal
@@ -46,19 +50,11 @@ public class Ball : MonoBehaviour {
    }
 
     /// <summary>
-    /// Max velocity of ball
+    /// TODO Max velocity of ball
     /// </summary>
-    void CapBallMovement ()
+    void CapBallmovement()
     {
-        if //collision from left side of ball && (rb2d.velocity.x) <= Mathf.Abs(maxVelocity))
-        {
-            rb2d.AddForce(Vector2.right * moveForce);
-        }
-
-        if //collision from right side of ball && (rb2d.velocity.x) <= Mathf.Abos(maxVelocity))
-        {
-            rb2d.AddForce(Vector2.left * moveForce);
-        }
+        Mathf.Clamp(Mathf.Abs(rb2d.velocity.x), 0, maxVelocity);
     }
 }
 
