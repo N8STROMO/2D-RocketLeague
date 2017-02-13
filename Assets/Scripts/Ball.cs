@@ -6,9 +6,9 @@ public class Ball : MonoBehaviour {
 
     public Rigidbody2D rb2d;
     public GameManager manager;
-    public float maxVelocity;
+    public float maxXVelocity;
     public float velocity;
-    public float moveForce;
+    public float minimumXVelcoity;
 	
     /// <summary>
     /// Called on first frame
@@ -24,11 +24,15 @@ public class Ball : MonoBehaviour {
 	void Update ()
     {
         velocity = rb2d.velocity.x;
-	}
+        CapBallmovement();
+    }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void FixedUpdate()
     {
-        CapBallmovement();
+        
     }
 
     /// <summary>
@@ -54,7 +58,9 @@ public class Ball : MonoBehaviour {
     /// </summary>
     void CapBallmovement()
     {
-        Mathf.Clamp(Mathf.Abs(rb2d.velocity.x), 0, maxVelocity);
+        float clampedSpeed = Mathf.Clamp(rb2d.velocity.x, minimumXVelcoity, maxXVelocity);
+
+        rb2d.velocity = new Vector2(clampedSpeed, rb2d.velocity.y);
     }
 }
 
