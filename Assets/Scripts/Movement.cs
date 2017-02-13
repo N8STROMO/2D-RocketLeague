@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
 
+    //TODO allow for movement around the Z axis mid air to be able to hit the ball at different angles 
+
     public Rigidbody2D rb2d;
     public float moveForce;
     public float maxSpeed;
@@ -32,6 +34,7 @@ public class Movement : MonoBehaviour {
 
     /// <summary>
     /// Checks if the Truck has collided with the ground and changes grounded to true
+    /// TODO: Use raycasting down from center of truck, if that value is equal to the heighet of the truck the truck is grounded 
     /// </summary>
     /// <param name="collision"></param>
     void OnCollisionEnter2D(Collision2D collision)

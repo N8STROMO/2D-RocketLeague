@@ -19,7 +19,8 @@ public class Ball : MonoBehaviour {
 	}
 	
 	/// <summary>
-    /// 
+    /// TODO give the ball dynamic collisions where it is not just simply bouncing, but moving at an angle 
+    /// based from the was the truck collides with the ball
     /// </summary>
 	void Update ()
     {
