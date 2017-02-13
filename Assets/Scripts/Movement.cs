@@ -32,8 +32,6 @@ public class Movement : MonoBehaviour {
 
     /// <summary>
     /// Checks if the Truck has collided with the ground and changes grounded to true
-    /// Checks if the Truck has collided with "something else" and changes grounded to true is the truck is already grounded
-    /// Else the Truck is not grounded and set grounded to false
     /// </summary>
     /// <param name="collision"></param>
     void OnCollisionEnter2D(Collision2D collision)
