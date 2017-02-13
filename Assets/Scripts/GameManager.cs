@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     void ResetAfterScore()
     {
-        ball.gameObject.transform.position = new Vector3(0, -6.4f, 0);
+        ball.gameObject.transform.position = new Vector3(0, -4.4f, 0);
         ball.rb2d.velocity = new Vector3(0, 0, 0);
     }
 }

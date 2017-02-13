@@ -52,12 +52,12 @@ public class Movement : MonoBehaviour {
         bool movementRight = Input.GetKey(KeyCode.RightArrow);
         bool movementLeft = Input.GetKey(KeyCode.LeftArrow);
 
-        if (movementRight && (Mathf.Abs(rb2d.velocity.x) <= maxSpeed) && grounded == true)
+        if (movementRight && (Mathf.Abs(rb2d.velocity.x) <= maxSpeed))
         {
             rb2d.AddForce(Vector2.right * moveForce);
         }
 
-        else if (movementLeft && (Mathf.Abs(rb2d.velocity.x) <= maxSpeed) && grounded == true)
+        else if (movementLeft && (Mathf.Abs(rb2d.velocity.x) <= maxSpeed))
         {
             rb2d.AddForce(Vector2.left * moveForce);
         }
