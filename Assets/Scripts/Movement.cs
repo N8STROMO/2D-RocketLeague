@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour {
     public float maxSpeed;
     public float jumpForce;
     public bool grounded;
+    public LayerMask groundMask;
+    public float rayCastDistance;
 
 
 	/// <summary>
@@ -37,8 +39,8 @@ public class Movement : MonoBehaviour {
     /// </summary>
     void FixedUpdate()
     {
-        Vector3 dwn = transform.TransformDirection(Vector3.down);
-       if (Physics.Raycast(transform.position, dwn, 3f))
+        Debug.DrawRay(transform.position, Vector3.down, Color.red);
+        if (Physics2D.Raycast(transform.position, -Vector2.down, rayCastDistance))
         {
             grounded = true;
         }
