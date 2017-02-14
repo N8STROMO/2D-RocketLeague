@@ -33,17 +33,29 @@ public class Movement : MonoBehaviour {
 	}
 
     /// <summary>
-    /// Checks if the Truck has collided with the ground and changes grounded to true
-    /// TODO: Use raycasting down from center of truck, if that value is equal to the heighet of the truck the truck is grounded 
+    /// 
     /// </summary>
-    /// <param name="collision"></param>
-    void OnCollisionEnter2D(Collision2D collision)
+    void FixedUpdate()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        Vector3 dwn = transform.TransformDirection(Vector3.down);
+       if (Physics.Raycast(transform.position, dwn, 3f))
         {
             grounded = true;
         }
     }
+
+    /// <summary>
+    /// Checks if the Truck has collided with the ground and changes grounded to true
+    /// TODO: Use raycasting down from center of truck, if that value is equal to the heighet of the truck the truck is grounded 
+    /// </summary>
+    /// <param name="collision"></param>
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        grounded = true;
+    //    }
+    //}
 
 
     /// <summary>
