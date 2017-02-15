@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
-
-    //TODO allow for movement around the Z axis mid air to be able to hit the ball at different angles 
-
+ 
     public Rigidbody2D rb2d;
+    public Transform frontWheel;
+    public Transform backWheel;
+    public float zRotation;
     public float moveForce;
     public float maxSpeed;
     public float jumpForce;
@@ -14,8 +15,7 @@ public class Movement : MonoBehaviour {
     public int groundMask = 1 << 9; // 0000000001 << 2 = 0000000100
     public float rayCastDistance;
 
-    public Transform wheel1;
-    public Transform wheel2;
+    
 
 
 	/// <summary>
@@ -35,17 +35,25 @@ public class Movement : MonoBehaviour {
         TruckHorizontalMovement();
         TruckJump();
         FacingDirection();
+        MovementInZ();
 	}
 
     /// <summary>
-    /// 
+    /// Casts two rays from the center of the wheels to the floor
+    /// If either hit is not equal to null the truck is grounded
     /// </summary>
     void FixedUpdate()
     {
-        RaycastHit2D hit;
-        Debug.DrawRay(transform.position, Vector3.down * rayCastDistance, Color.red);
-        hit = Physics2D.Raycast(transform.position, Vector2.down, rayCastDistance, groundMask);
-        grounded = hit.collider != null;
+        RaycastHit2D hitFront;
+        RaycastHit2D hitBack;
+
+        Debug.DrawRay(frontWheel.position, Vector3.down * rayCastDistance, Color.red);
+        Debug.DrawRay(backWheel.position, Vector3.down * rayCastDistance, Color.red);
+
+        hitFront = Physics2D.Raycast(frontWheel.position, Vector2.down, rayCastDistance, groundMask);
+        hitBack = Physics2D.Raycast(backWheel.position, Vector2.down, rayCastDistance, groundMask);
+
+        grounded = hitFront.collider != null || hitBack.collider != null; //something wrong here
     }
 
     /// <summary>
@@ -105,5 +113,24 @@ public class Movement : MonoBehaviour {
             grounded = false;
         }
 
+    }
+
+    /// <summary>
+    /// Allows the Truck to rotate along the Z Axis
+    /// </summary>
+    void MovementInZ()
+    {
+        bool rotateRight = Input.GetKey(KeyCode.D);
+        bool rotateLeft = Input.GetKey(KeyCode.A);
+
+        if(rotateRight)
+        {
+            transform.Rotate(new Vector3(0, 0, zRotation), Space.World);
+        }
+
+        if(rotateLeft)
+        {
+            transform.Rotate(new Vector3(0, 0, -zRotation), Space.World);
+        }
     }
 }
