@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WheelRotation : MonoBehaviour {
 
-    public Rigidbody2D rb2b;
+    public Rigidbody2D rb2d;
     public Movement movement;
     public float rotation;
 
@@ -13,7 +13,7 @@ public class WheelRotation : MonoBehaviour {
     /// </summary>
 	void Start ()
     {
-        rb2b = GetComponent<Rigidbody2D>();
+        rb2d= movement.GetComponent<Rigidbody2D>();
 	}
 	
 	/// <summary>
@@ -34,12 +34,12 @@ public class WheelRotation : MonoBehaviour {
 
         if (movementRight)
         {
-            rb2b.transform.Rotate(new Vector3(0, 0, -rotation * movement.rb2d.velocity.x));
+            transform.Rotate(new Vector3(0, 0, -rotation * rb2d.velocity.x));
         }
 
         if (movementLeft)
         {
-            rb2b.transform.Rotate(new Vector3(0, 0, rotation * movement.rb2d.velocity.x));
+            transform.Rotate(new Vector3(0, 0, rotation * rb2d.velocity.x));
         }
     }
 }

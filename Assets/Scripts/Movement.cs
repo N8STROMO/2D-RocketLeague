@@ -11,8 +11,11 @@ public class Movement : MonoBehaviour {
     public float maxSpeed;
     public float jumpForce;
     public bool grounded;
-    public LayerMask groundMask;
+    public int groundMask = 1 << 9; // 0000000001 << 2 = 0000000100
     public float rayCastDistance;
+
+    public Transform wheel1;
+    public Transform wheel2;
 
 
 	/// <summary>
@@ -39,26 +42,11 @@ public class Movement : MonoBehaviour {
     /// </summary>
     void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, Vector3.down, Color.red);
-        if (Physics2D.Raycast(transform.position, -Vector2.down, rayCastDistance))
-        {
-            grounded = true;
-        }
+        RaycastHit2D hit;
+        Debug.DrawRay(transform.position, Vector3.down * rayCastDistance, Color.red);
+        hit = Physics2D.Raycast(transform.position, Vector2.down, rayCastDistance, groundMask);
+        grounded = hit.collider != null;
     }
-
-    /// <summary>
-    /// Checks if the Truck has collided with the ground and changes grounded to true
-    /// TODO: Use raycasting down from center of truck, if that value is equal to the heighet of the truck the truck is grounded 
-    /// </summary>
-    /// <param name="collision"></param>
-    //void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground"))
-    //    {
-    //        grounded = true;
-    //    }
-    //}
-
 
     /// <summary>
     /// Deals with horizontal movement of the truck
