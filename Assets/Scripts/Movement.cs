@@ -15,9 +15,6 @@ public class Movement : MonoBehaviour {
     public int groundMask = 1 << 9; // 0000000001 << 2 = 0000000100
     public float rayCastDistance;
 
-    
-
-
 	/// <summary>
     /// Called on first frame
     /// </summary>

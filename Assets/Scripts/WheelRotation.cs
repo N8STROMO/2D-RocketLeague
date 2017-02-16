@@ -7,14 +7,6 @@ public class WheelRotation : MonoBehaviour {
     public Rigidbody2D rb2d;
     public Movement movement;
     public float rotation;
-
-	/// <summary>
-    /// Called on first frame
-    /// </summary>
-	void Start ()
-    {
-        rb2d= movement.GetComponent<Rigidbody2D>();
-	}
 	
 	/// <summary>
     /// Call method to rotate wheels
