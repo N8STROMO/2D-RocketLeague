@@ -29,14 +29,6 @@ public class Ball : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
-    /// </summary>
-    void FixedUpdate()
-    {
-        
-    }
-
-    /// <summary>
     /// Deals with which goal is hit and awarding the proper player with a goal
     /// </summary>
     /// <param name="collision"></param>

@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class WheelRotation : MonoBehaviour {
 
-    public Rigidbody2D rb2b;
     public Movement movement;
     public float rotation;
 
-	/// <summary>
-    /// Called on first frame
-    /// </summary>
-	void Start ()
-    {
-        rb2b = GetComponent<Rigidbody2D>();
-	}
-	
-	/// <summary>
+    /// <summary>
     /// Call method to rotate wheels
     /// </summary>
-	void Update ()
+    void Update ()
     {
         Rotate();
 	}
@@ -34,12 +25,12 @@ public class WheelRotation : MonoBehaviour {
 
         if (movementRight)
         {
-            rb2b.transform.Rotate(new Vector3(0, 0, -rotation * movement.rb2d.velocity.x));
+            transform.Rotate(new Vector3(0, 0, -rotation * movement.rb2d.velocity.x));
         }
 
         if (movementLeft)
         {
-            rb2b.transform.Rotate(new Vector3(0, 0, rotation * movement.rb2d.velocity.x));
+            transform.Rotate(new Vector3(0, 0, rotation * movement.rb2d.velocity.x));
         }
     }
 }
