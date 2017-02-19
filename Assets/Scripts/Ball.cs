@@ -36,12 +36,12 @@ public class Ball : MonoBehaviour {
     {
         if(collision.gameObject.CompareTag("Player1Goal"))
         {
-            manager.Player2Scores();
+            manager.CmdPlayer2Scores();
         }
 
         if(collision.gameObject.CompareTag("Player2Goal"))
         {
-            manager.Player1Scores();
+            manager.CmdPlayer1Scores();
         }
 
    }

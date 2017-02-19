@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class Networking : NetworkBehaviour {
-    GameManager manager;
+
     [SyncVar]
     public int playerOneScore, playerTwoScore;
 	
@@ -19,4 +19,9 @@ public class Networking : NetworkBehaviour {
         }
 	}
 
+    [Command]
+    public void CmdSyncScore()
+    {
+
+    }
 }

@@ -18,9 +18,13 @@ public class Movement : MonoBehaviour {
 	/// <summary>
     /// Called on first frame
     /// </summary>
-	void Start ()
+	void Awake ()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        if (transform.position.x < 0)
+        {
+            rb2d.transform.localScale = new Vector3(-.65f, .65f, 1);
+        }
 
 	}
 	

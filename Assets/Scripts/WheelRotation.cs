@@ -25,12 +25,12 @@ public class WheelRotation : MonoBehaviour {
 
         if (movementRight)
         {
-            transform.Rotate(new Vector3(0, 0, -rotation * movement.rb2d.velocity.x));
+            transform.Rotate(new Vector3(0, 0, -rotation));
         }
 
         if (movementLeft)
         {
-            transform.Rotate(new Vector3(0, 0, rotation * movement.rb2d.velocity.x));
+            transform.Rotate(new Vector3(0, 0, rotation));
         }
     }
 }
