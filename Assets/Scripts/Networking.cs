@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class Networking : NetworkBehaviour {
-
-	/// <summary>
+    GameManager manager;
+    [SyncVar]
+    public int playerOneScore, playerTwoScore;
+	
+    /// <summary>
     /// 
     /// </summary>
 	void Start ()
@@ -15,11 +18,18 @@ public class Networking : NetworkBehaviour {
             GetComponent<Movement>().enabled = true;
         }
 	}
-	
-	/// <summary>
-    /// 
-    /// </summary>
-	void Update () {
-		
-	}
+
+    void Update()
+    {
+        UpdateScore();
+    }
+
+    public void UpdateScore()
+    {
+        playerOneScore = manager.player1Score;
+        playerTwoScore = manager.player2Score;
+    }
+    
+
+
 }
