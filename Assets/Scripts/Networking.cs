@@ -19,17 +19,20 @@ public class Networking : NetworkBehaviour {
         }
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
     void Update()
     {
         UpdateScore();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void UpdateScore()
     {
         playerOneScore = manager.player1Score;
         playerTwoScore = manager.player2Score;
-    }
-    
-
-
+    }   
 }
