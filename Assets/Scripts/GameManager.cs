@@ -4,27 +4,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     public Ball ball;
+    public Networking networking;
     public Movement movement;
     public Text player1ScoreText;
     public Text player2ScoreText;
-    private int player1Score = 0;
-    private int player2Score = 0;
-
-    /// <summary>
-    /// 
-    /// </summary>
-	void Start()
-    {
-		
-	}
-	
-	/// <summary>
-    /// 
-    /// </summary>
-	void Update()
-    {
-		
-	}
+    public int player1Score = 0;
+    public int player2Score = 0;
 
     /// <summary>
     /// If player one scores add a point to their score and increase the score; reset the game
@@ -32,7 +17,7 @@ public class GameManager : MonoBehaviour {
     public void Player1Scores()
     {
         player1Score++;
-        player1ScoreText.text = player1Score + "";
+        player1ScoreText.text = networking.playerOneScore + "";
         ResetAfterScore();
     }
 
@@ -42,7 +27,7 @@ public class GameManager : MonoBehaviour {
     public void Player2Scores()
     {
         player2Score++;
-        player2ScoreText.text = player2Score + "";
+        player2ScoreText.text = networking.playerTwoScore + "";
         ResetAfterScore();
     }
 
